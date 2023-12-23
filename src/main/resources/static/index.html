@@ -1,0 +1,86 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Interface</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="display-1">Query InterFace</h1>
+        <div class="form-group">
+            <label class="radio-inline">
+                <input type="radio" name="queryType" value="text" checked="checked" onclick="toggleInput('text')"> Text
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="queryType" value="filter" onclick="toggleInput('filter')"> Filters
+            </label>
+        </div>
+
+        
+
+        <select id="filters" class="form-control margin" style="display: none;">
+            <option value="level">Level</option>
+            <option value="message">Message</option>
+            <option value="resourceId">Resource ID</option>
+            <option value="timestamp">Timestamp</option>
+            <option value="traceid">TraceID</option>
+            <option value="spanid">SpanID</option>
+            <option value="commit">Commit</option>
+            <option value="metadata.parentresourceid">Metadata.ParentResourceID</option>
+        </select>
+            <input type="text" id="additionalInput" class="form-control margin" placeholder="Enter Your Query">
+
+        <div class="btn-container">
+            <button class="btn btn-primary btn-custom" onclick="performSearch()">Search</button>
+            <button class="btn btn-danger btn-custom" onclick="clearSearch()">Clear</button>
+        </div>
+    </div>
+
+    <div class="table-container container" id="table-cont" style="display: none;">
+        <table class="table" id="table">
+            <thead>
+              <tr>
+                <th scope="col">level</th>
+                <th scope="col">message</th>
+                <th scope="col">resource Id</th>
+                <th scope="col">Time Stamp</th>
+                <th scope="col">Trace Id</th>
+                <th scope="col">Span Id</th>
+                <th scope="col">Commit</th>
+                <th scope="col">Metadata</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        
+
+        function clearSearch() {
+            document.getElementById('additionalInput').value = '';
+        }
+
+        function toggleInput(type) {
+            var textInput = document.getElementById('additionalInput');
+            var filterInput = document.getElementById('filters');
+            if (type === 'text') {
+                textInput.style.display = 'block';
+                filterInput.style.display = 'none';
+            } else {
+                textInput.style.display = 'block';
+                filterInput.style.display = 'block';
+                
+            }
+        }
+    </script>
+
+    <script src="/script.js"></script>
+</body>
+</html>
